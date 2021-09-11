@@ -1,35 +1,80 @@
 package ArdhiJmartBO;
 
-
-/**
- * Write a description of class Jmart here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
 public class Jmart
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Jmart
-     */
-    public Jmart()
+    public static void main(String[] args)
     {
-        // initialise instance variables
-        x = 0;
+        int before = 1000;
+        int after = 900;
+        System.out.println("Promo = " + getPromo());
+        System.out.println("Customer = " + getCustomer());
+        System.out.println("Discount Percentage = " + getDiscountPercentage(before, after));
+        System.out.println("Discounted Price = " + getDiscountedPrice(before, getDiscountPercentage(before, after)));
+        System.out.println("Original Price = " + getOriginalPrice(getDiscountedPrice(before, getDiscountPercentage(before, after)), getDiscountPercentage(before, after)));
+        System.out.println("Commission Multiplier = " + getCommissionMultiplier());
+        System.out.println("Adjusted Price = " + getAdjustedPrice(getDiscountedPrice(before, getDiscountPercentage(before, after))));
+        System.out.println("Admin Fee = " + getAdminFee(getDiscountedPrice(before, getDiscountPercentage(before, after))));    
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public static int getPromo()
     {
-        // put your code here
-        return x + y;
+        return 0;
+    }
+    
+    public static String getCustomer()
+    {
+        return "oop";
+    }
+    
+    public static float getDiscountPercentage(int before, int after)
+    {
+        float discountPercentage;
+        
+        if (before>after)
+        {
+            discountPercentage = before - after;
+            discountPercentage = (discountPercentage * 100) / before;
+        }
+        else
+        {
+            discountPercentage = 0;
+        }
+        return discountPercentage;
+    }
+    
+    public static int getDiscountedPrice(int price, float discountPercentage)
+    {
+        int diskon = (int)discountPercentage;
+        int discountedPrice;
+        if (discountPercentage<100)
+        {
+            discountedPrice = price - (price * diskon / 100);
+        }
+        else
+        {
+            discountedPrice = 0;
+        }
+        return discountedPrice;
+    }
+    
+    public static int getOriginalPrice(int discountedPrice, float  discountPercentage)
+    {
+       return (int)(discountedPrice / (discountPercentage / 100));  
+    }
+    
+    public static float getCommissionMultiplier()
+    {
+         float commisionMultiplier = 0.05f;
+         return commisionMultiplier;
+    }
+    
+    public static int getAdjustedPrice(int price)
+    {
+         return price + (int)(price * getCommissionMultiplier());
+    }
+    
+    public static int getAdminFee(int price)
+    {
+        return (int)(price * getCommissionMultiplier());
     }
 }
