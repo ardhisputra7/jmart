@@ -3,19 +3,15 @@ package ArdhiJmartBO;
 public class Jmart
 {
     public static void main(String[] args)
-    {
-        int before = 1000;
-        int after = 900;
-        System.out.println("Promo = " + getPromo());
-        System.out.println("Customer = " + getCustomer());
-        System.out.println("Discount Percentage = " + getDiscountPercentage(before, after));
-        System.out.println("Discounted Price = " + getDiscountedPrice(before, getDiscountPercentage(before, after)));
-        System.out.println("Original Price = " + getOriginalPrice(getDiscountedPrice(before, getDiscountPercentage(before, after)), getDiscountPercentage(before, after)));
-        System.out.println("Commission Multiplier = " + getCommissionMultiplier());
-        System.out.println("Adjusted Price = " + getAdjustedPrice(getDiscountedPrice(before, getDiscountPercentage(before, after))));
-        System.out.println("Admin Fee = " + getAdminFee(getDiscountedPrice(before, getDiscountPercentage(before, after))));    
+    {    
+        
     }
     
+    public static Product create()
+    {
+        return new Product("HP", 4, false, new PriceTag(25000,50),ProductCategory.GADGET);
+    }
+    /*
     public static int getPromo()
     {
         return 0;
@@ -77,4 +73,5 @@ public class Jmart
     {
         return (int)(price * getCommissionMultiplier());
     }
+    */
 }
