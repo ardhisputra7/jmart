@@ -1,7 +1,8 @@
 package ArdhiJmartBO;
 
 public class Jmart
-{
+{   
+
     public static void main(String[] args)
     {    
         
@@ -10,6 +11,21 @@ public class Jmart
     public static Product create()
     {
         return new Product("HP", 4, false, new PriceTag(25000,50),ProductCategory.GADGET);
+    }
+    
+    public static Product createProduct()
+    {
+        return null;
+    }
+    
+    public static Coupon createCoupun()
+    {
+        return null;
+    }
+    
+    public static ShipmentDuration createShipmentDuration() 
+    {
+        return null;
     }
     /*
     public static int getPromo()
