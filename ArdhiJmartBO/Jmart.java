@@ -10,22 +10,26 @@ public class Jmart
     
     public static Product create()
     {
-        return new Product("HP", 4, false, new PriceTag(25000,50),ProductCategory.GADGET);
+        Product laptop = new Product("laptop", 150, false, new PriceTag(25000), ProductCategory.ELECTRONIC);
+        return laptop;
     }
     
     public static Product createProduct()
     {
-        return null;
+        Product soto = new Product("soto", 200, false, new PriceTag(10000), ProductCategory.FNB);
+        return soto;
     }
     
     public static Coupon createCoupun()
     {
-        return null;
+        Coupon fiveCoupon = new Coupon("5% discount", 101, Coupon.Type.DISCOUNT, 5, 30000);
+        return fiveCoupon;
     }
     
     public static ShipmentDuration createShipmentDuration() 
     {
-        return null;
+        ShipmentDuration fromJapan = new ShipmentDuration(ShipmentDuration.KARGO, ShipmentDuration.REGULER);
+        return fromJapan;
     }
     /*
     public static int getPromo()

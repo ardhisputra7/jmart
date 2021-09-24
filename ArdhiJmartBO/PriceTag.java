@@ -3,9 +3,9 @@ package ArdhiJmartBO;
 public class PriceTag
 {
     // instance variables - replace the example below with your own
-    public static double COMMISSION_MULTIPLIER = 0.05;
-    public static double BOTTOM_PRICE = 20000.0;
-    public static double BOTTOM_FEE = 1000.0;
+    public static final double COMMISSION_MULTIPLIER = 0.05;
+    public static final double BOTTOM_PRICE = 20000.0;
+    public static final double BOTTOM_FEE = 1000;
     public double discount;
     public double price;
     /**
@@ -28,8 +28,8 @@ public class PriceTag
     public double getAdjustedPrice()
     {
         // initialise instance variables
-        price = getDiscountedPrice() + getAdminFee();
-        return price;
+        return getDiscountedPrice() + getAdminFee();
+        
     }
     
     public double getAdminFee()
