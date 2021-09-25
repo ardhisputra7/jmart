@@ -2,5 +2,4 @@
 comment0.target=Product
 comment1.params=name\ weight\ conditionUsed\ prieTage\ category
 comment1.target=Product(java.lang.String,\ int,\ boolean,\ PriceTag,\ ProductCategory)
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Product\r\n
 numComments=2
