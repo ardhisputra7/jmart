@@ -19,6 +19,7 @@ public abstract class Transaction extends Recognizable
     protected Transaction(int id, Account buyer, Store store)
     {
         super(id);
+        
     }
        
     public static enum Rating

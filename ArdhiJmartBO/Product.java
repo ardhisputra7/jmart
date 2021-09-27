@@ -1,7 +1,7 @@
 package ArdhiJmartBO;
 
 
-public class Product
+public class Product implements FileParser
 {
     // instance variables - replace the example below with your own
     public String name;
@@ -20,9 +20,13 @@ public class Product
         this.weight = weight;
         this.conditionUsed = conditionUsed;
         this.priceTag = priceTag;
-        this.category =category;
+        this.category = category;
         this.rating = new ProductRating();
     }
 
-    
+    public boolean read(String content)
+    {
+        // put your code here
+        return false;
+    }
 }

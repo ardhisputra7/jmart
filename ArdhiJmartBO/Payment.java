@@ -1,35 +1,28 @@
 package ArdhiJmartBO;
 
 
-/**
- * Write a description of class Payment here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-public class Payment
+public class Payment extends Transaction implements FileParser
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Payment
-     */
-    public Payment()
+    public int productId;
+    public ShipmentDuration shipmentDuration;
+    
+    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration)
     {
-        // initialise instance variables
-        x = 0;
+        super(id,buyerId,0);
+        this.shipmentDuration = shipmentDuration;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration)
+    {
+        super(id,buyerId,storeId);
+        this.productId = productId;
+        this.shipmentDuration = shipmentDuration;
+    }
+    
+    public boolean read(String content)
     {
         // put your code here
-        return x + y;
+        return false;
     }
 }
