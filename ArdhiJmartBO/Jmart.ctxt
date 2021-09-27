@@ -1,13 +1,3 @@
 #BlueJ class context
 comment0.target=Jmart
-comment1.params=args
-comment1.target=void\ main(java.lang.String[])
-comment2.params=
-comment2.target=Product\ create()
-comment3.params=
-comment3.target=Product\ createProduct()
-comment4.params=
-comment4.target=Coupon\ createCoupun()
-comment5.params=
-comment5.target=ShipmentDuration\ createShipmentDuration()
-numComments=6
+numComments=1

@@ -1,28 +1,28 @@
 package ArdhiJmartBO;
 
 
-public class Payment extends Transaction implements FileParser
+public class Payment extends Invoice implements Transactor
 {
-    public int productId;
-    public ShipmentDuration shipmentDuration;
+    public int productCount;
+    public Shipment shipment;
     
-    public Payment(int id, int buyerId, Product product, ShipmentDuration shipmentDuration)
+    public Payment(int id,int buyerId, int productId, int productCount, Shipment shipment)
     {
-        super(id,buyerId,0);
-        this.shipmentDuration = shipmentDuration;
+        super(id,buyerId,productId);
+        this.productCount = productCount;
+        this.shipment = shipment;
     }
 
     
-    public Payment(int id, int buyerId, int storeId, int productId, ShipmentDuration shipmentDuration)
-    {
-        super(id,buyerId,storeId);
-        this.productId = productId;
-        this.shipmentDuration = shipmentDuration;
+    public double getTotalPay(){
+        return 0;
     }
     
-    public boolean read(String content)
-    {
-        // put your code here
+    public boolean validate(){
         return false;
+    }
+    
+    public Invoice perform(){
+        return null;
     }
 }
