@@ -1,10 +1,14 @@
 package ArdhiJmartBO;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Store extends Recognizable implements FileParser
 {
     public String name;
     public String address;
     public String phoneNumber;
+    public static String REGEX_PHONE = "^[0-9]{9,12}\b";
+    public static String REGEX_NAME = "^[A-Z]{4,20}";
     
     public Store(int accountId, String name, String address, String phoneNumber)
     {
@@ -34,5 +38,24 @@ public class Store extends Recognizable implements FileParser
         "Name: "+ name +
         "\naddress: " + address +
         "\nphoneNumber: " + phoneNumber;
+    }
+    
+    public boolean validate()
+    {
+        Pattern telp = Pattern.compile(REGEX_PHONE);
+        Pattern nama = Pattern.compile(REGEX_NAME);
+        Matcher matchtelp = telp.matcher(phoneNumber);
+        Matcher matchnama = nama.matcher(name);
+        boolean telpbener = matchtelp.find();
+        boolean namabener = matchnama.find();
+        if ( telpbener == true && namabener == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
     }
 }
