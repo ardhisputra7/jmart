@@ -3,12 +3,11 @@ package ArdhiJmartBO;
 public class Jmart
 {   
     
-    /*
     public static void main(String[] args)
     {    
         
     }
-    
+    /*
     public static Product create()
     {
         Product laptop = new Product("laptop", 150, false, new PriceTag(25000), ProductCategory.ELECTRONIC);

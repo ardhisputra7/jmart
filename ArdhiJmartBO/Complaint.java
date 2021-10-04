@@ -1,5 +1,6 @@
 package ArdhiJmartBO;
 import java.util.Date;
+import java.text.*;
 
 public class Complaint extends Recognizable implements FileParser
 {
@@ -17,5 +18,11 @@ public class Complaint extends Recognizable implements FileParser
     public boolean read(String content)
     {
         return false;
+    }
+    
+    public String toString()
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        return "Complaint{date=" + dateFormat.format(date) + ", desc='" + desc + "'}";
     }
 }

@@ -8,7 +8,7 @@ public class Store extends Recognizable implements FileParser
     public String address;
     public String phoneNumber;
     public static String REGEX_PHONE = "^[0-9]{9,12}\b";
-    public static String REGEX_NAME = "^[A-Z]{4,20}";
+    public static String REGEX_NAME = "\\w+\\s{1}\\w+\\s{1}\\w+";
     
     public Store(int accountId, String name, String address, String phoneNumber)
     {
