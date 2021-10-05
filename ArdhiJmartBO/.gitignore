@@ -21,3 +21,5 @@
 /Transaction.class
 /Transactor.class
 /Type.class
+/Filter.class
+/Invoice$Record.class
