@@ -6,9 +6,9 @@ public class Recognizable implements Comparable <Recognizable>
     // instance variables - replace the example below with your own
     public final int id;
 
-    protected Recognizable(int id)
+    protected Recognizable()
     {
-      this.id = id;  
+      this.id = 0;  
     }
     
     public int compareTo (Recognizable other)
@@ -26,9 +26,19 @@ public class Recognizable implements Comparable <Recognizable>
     
     public boolean equals (Object object)
     {
-        Recognizable recognizable = (Recognizable) object;
-        return object instanceof Recognizable && ((Recognizable) object).id == id;
-            
+    	if (object instanceof Recognizable) {
+    		object = (Recognizable) object;
+    		if (this.id == ((Recognizable)object).id) {
+    			return true;
+    		}
+    		else {
+    			return false;
+    		}
+    	}
+    	else {
+    		return false;
+    	}
+       
     }
     
     public boolean equals (Recognizable recognizable)
@@ -43,7 +53,6 @@ public class Recognizable implements Comparable <Recognizable>
     
     public static int setClosingId (Class<Recognizable> clazz, int id)
     {
-    	
     	return 0;
     }
 }

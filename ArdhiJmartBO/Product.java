@@ -1,45 +1,39 @@
 package ArdhiJmartBO;
 
 
-public class Product implements FileParser
+public class Product 
 {
     // instance variables - replace the example below with your own
-    public int storeId;
-    public String name;
-    public int weight;
-    public boolean conditionUsed;
-    public PriceTag priceTag;
+    public int accountId;
     public ProductCategory category;
-    public ProductRating rating;
-    public Shipment.MultiDuration multiDuration;
+    public boolean conditionUsed;
+    public double discount;
+    public String name;
+    public double price;
+    public byte shipmentPlans;
+    public int weight;
     
-    public Product(int id, int storeId, String name, int weight, boolean conditionUsed,PriceTag priceTag, ProductCategory category, Shipment.MultiDuration multiDuration)
+    public Product(int accountId, String name, int weight, boolean conditionUsed, double price, double discount, ProductCategory category, byte shipmentPlans)
     {
-        // initialise instance variables
-        this.storeId = storeId;
+        this.accountId = accountId;
         this.name = name;
         this.weight = weight;
         this.conditionUsed = conditionUsed;
-        this.priceTag = priceTag;
+        this.price = price;
+        this.discount = discount;
         this.category = category;
-        this.rating = rating;
-        this.multiDuration = multiDuration;
+        this.shipmentPlans = shipmentPlans;
+        
     }
 
-    public boolean read(String content)
-    {
-        // put your code here
-        return false;
-    }
-    
     public String toString(){
         return 
         "Name: "+ name +
         "\nWeight: " + weight +
         "\nconditionUsed: " + conditionUsed +
-        "\npriceTag: " + priceTag +
-        "\ncategory: " + category +
-        "\nrating: " + rating +
-        "\nstoreId: " + storeId;
+        "\nprice: " + price +
+        "\nDiscount: " + discount +
+        "\nCategory: " + category +
+        "\nShipmentPlans: " + shipmentPlans;
     }
 }

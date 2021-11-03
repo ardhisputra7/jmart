@@ -2,7 +2,7 @@ package ArdhiJmartBO;
 import java.util.Date;
 import java.util.ArrayList;
 
-public abstract class Invoice extends Recognizable implements FileParser
+public abstract class Invoice extends Recognizable 
 {
     public Date date;
     public int buyerId;
@@ -12,19 +12,13 @@ public abstract class Invoice extends Recognizable implements FileParser
     public Status status;
     public ArrayList<Record> history;
     
-    protected Invoice(int id, int buyerId, int productId)
+    protected Invoice(int buyerId, int productId)
     {
-        super(id);
         this.buyerId = buyerId;
         this.productId = productId;
-        Date date = new Date();
+        //Date date = new Date();
         rating = Rating.NONE;
         status = Status.WAITING_CONFIRMATION;
-    }
-
-    public boolean read(String content)
-    {
-        return false;
     }
     
     public abstract double getTotalPay();
@@ -41,8 +35,8 @@ public abstract class Invoice extends Recognizable implements FileParser
     
     public class Record
     {
-    public Status status;
-    public Date date;
-    public String message;
+    	public Status status;
+    	public Date date;
+    	public String message;
     }
 }

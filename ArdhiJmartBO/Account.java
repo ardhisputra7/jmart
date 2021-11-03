@@ -2,7 +2,7 @@ package ArdhiJmartBO;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Account extends Recognizable implements FileParser
+public class Account extends Recognizable 
 {
     // instance variables - replace the example below with your own
     public static final String REGEX_EMAIL = "^\\w+([\\.]?[&\\*~\\w+])*@\\w+([\\.-]?)*(\\.\\w{2,3})+$";
@@ -10,13 +10,15 @@ public class Account extends Recognizable implements FileParser
     public String name;
     public String email;
     public String password;
+    public double balance;
+    public Store store;
     
-    public Account(int id, String name, String email, String password)
+    public Account(String name, String email, String password, double balance)
     {
-        super(id);
         this.name = name;
         this.email = email;
         this.password = password;
+        this.balance= balance;
     }
     
     public boolean validate(){
@@ -36,9 +38,4 @@ public class Account extends Recognizable implements FileParser
         }
     }
     
-    public boolean read(String content)
-    {
-        // put your code here
-        return false;
-    }
 }

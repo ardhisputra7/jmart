@@ -10,7 +10,7 @@ public abstract class Transaction extends Recognizable
     
     protected Transaction(int id, int buyerId, int storeId)
     {
-        super(id);
+       
         this.buyerId = buyerId;
         this.storeId = storeId;
         
@@ -18,7 +18,7 @@ public abstract class Transaction extends Recognizable
     
     protected Transaction(int id, Account buyer, Store store)
     {
-        super(id);
+    	
         
     }
        
