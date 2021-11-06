@@ -2,7 +2,7 @@ package ArdhiJmartBO;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Account extends Recognizable 
+public class Account extends Serializable 
 {
     // instance variables - replace the example below with your own
     public static final String REGEX_EMAIL = "^\\w+([\\.]?[&\\*~\\w+])*@\\w+([\\.-]?)*(\\.\\w{2,3})+$";

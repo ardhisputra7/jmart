@@ -31,9 +31,9 @@ public class Coupon
         return used;
     }
     
-    public boolean canApply(Treasury priceTag)
+    public boolean canApply(double price, double discount)
     {
-        if  (priceTag.getAdjustedPrice(priceTag.price, priceTag.discount)>= minimum && used == false )
+        if  (Treasury.getAdjustedPrice(price, discount)>= minimum && used == false )
         {
             return true;
     
@@ -43,16 +43,16 @@ public class Coupon
         }
     }
     
-    public double apply(Treasury priceTag)
+    public double apply(double price, double discount)
     {
         used = true;
         if(type == Type.DISCOUNT)
         {
-            return priceTag.getAdjustedPrice(priceTag.price, priceTag.discount) - (priceTag.getAdjustedPrice(priceTag.price, priceTag.discount) * cut / 100);
+            return Treasury.getAdjustedPrice(price, discount) - (Treasury.getAdjustedPrice(price, discount) * cut / 100);
         }
         else if(type == Type.REBATE)
         {
-            return priceTag.getAdjustedPrice(priceTag.price, priceTag.discount) - cut;
+            return Treasury.getAdjustedPrice(price, discount) - cut;
         }
         else 
         {

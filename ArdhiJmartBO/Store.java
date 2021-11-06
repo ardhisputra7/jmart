@@ -2,7 +2,7 @@ package ArdhiJmartBO;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Store extends Recognizable 
+public class Store 
 {
     public String name;
     public double balance;
