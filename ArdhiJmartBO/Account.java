@@ -21,13 +21,15 @@ public class Account extends Serializable
         this.balance= balance;
     }
     
-    public boolean validate(){
+    public boolean validate()
+    {
         Pattern emailpat = Pattern.compile(REGEX_EMAIL);
         Pattern passpat = Pattern.compile(REGEX_PASSWORD);
         Matcher matchemail = emailpat.matcher(email);
         Matcher matchpass = passpat.matcher(password);
         boolean emailbener = matchemail.find();
         boolean passbener = matchpass.find();
+        
         if ( emailbener == true && passbener == true)
         {
             return true;

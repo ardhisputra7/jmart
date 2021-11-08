@@ -9,10 +9,10 @@ public class Serializable implements Comparable <Serializable>
     
     protected Serializable()
     {
-    Integer counter = mapCounter.get(getClass());
-    counter = counter == null ? 0 : counter + 1;
-    mapCounter.put(getClass(), counter);
-    this.id = counter;
+    	Integer counter = mapCounter.get(getClass());
+    	counter = counter == null ? 0 : counter + 1;
+    	mapCounter.put(getClass(), counter);
+    	this.id = counter;
     }
     
     public int compareTo (Serializable other)
