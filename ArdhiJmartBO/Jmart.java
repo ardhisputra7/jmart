@@ -109,15 +109,19 @@ public class Jmart
     {  
     	try
     	{
-    	List<Product> list = read("/Java/Jmart/lib/randomProductList.json");
-    	/*List<Product> filtered = filterByPrice(list, 13000.0, 20000.0);
-    	filtered.forEach(product -> System.out.println(product.price));
-    	*/
+    	/*List<Product> list = read("/Java/Jmart/lib/randomProductList.json");
     	List<Product> filtered = filterByName(list, "gtx", 1, 5);
     	filtered.forEach(product -> System.out.println(product.name));
     	
     	List<Product> filteredId = filterByAccountId(list, 1, 0, 5);
     	filteredId.forEach(product -> System.out.println(product.name));
+    	*/
+    		String filepath = "/Java/Jmart/lib/file.json";
+    		JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+    		tableAccount.add(new Account("name", "email","password",10));
+    		tableAccount.writeJson();
+    		tableAccount = new JsonTable<>(Account.class, filepath);
+    		tableAccount.forEach(account -> System.out.println(account.toString()));
     	}
     	catch (Throwable t)
     	{
