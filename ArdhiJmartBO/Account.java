@@ -2,6 +2,7 @@ package ArdhiJmartBO;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class Account extends Serializable 
 {
     // instance variables - replace the example below with your own
@@ -38,6 +39,10 @@ public class Account extends Serializable
         {
             return false;
         }
+    }
+    
+    public String toString() {
+    	return "nama:" + name + "\nemail: "+ email + "\npassword: " + password + "\nbalance: "+ balance + "\n";
     }
     
 }
