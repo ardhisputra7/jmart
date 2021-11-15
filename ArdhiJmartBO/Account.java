@@ -42,7 +42,10 @@ public class Account extends Serializable
     }
     
     public String toString() {
-    	return "nama:" + name + "\nemail: "+ email + "\npassword: " + password + "\nbalance: "+ balance + "\n";
+    	return "nama:" + name + 
+    		   "\nemail: "+ email + 
+    		   "\npassword: " + password + 
+    		   "\nbalance: "+ balance + "\n";
     }
     
 }

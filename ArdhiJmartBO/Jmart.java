@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputFilter.Status;
 import java.util.*;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 
 public class Jmart
 {   
+	/*
     class Country
     {
     	public String name;
@@ -104,9 +106,15 @@ public class Jmart
         }
         return list;
     }
+	*/
+	public static long DELIVERED_LIMIT_MS = 100;
+	public static long ON_DELIVERY_LIMIT_MS = 100;
+	public static long ON_PROGRESS_LIMIT_MS = 150;
+	public static long WAITING_CONF_LIMIT_MS = 150;
 	
     public static void main(String[] args)
     {  
+    	
     	try
     	{
     	/*List<Product> list = read("/Java/Jmart/lib/randomProductList.json");
@@ -115,18 +123,62 @@ public class Jmart
     	
     	List<Product> filteredId = filterByAccountId(list, 1, 0, 5);
     	filteredId.forEach(product -> System.out.println(product.name));
+    	
+    	String filepath = "/Java/Jmart/lib/file.json";
+    	JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
+    	tableAccount.add(new Account("name", "email","password",10));
+    	tableAccount.writeJson();
+    	tableAccount = new JsonTable<>(Account.class, filepath);
+    	tableAccount.forEach(account -> System.out.println(account.toString()));
     	*/
-    		String filepath = "/Java/Jmart/lib/file.json";
-    		JsonTable<Account> tableAccount = new JsonTable<>(Account.class, filepath);
-    		tableAccount.add(new Account("name", "email","password",10));
-    		tableAccount.writeJson();
-    		tableAccount = new JsonTable<>(Account.class, filepath);
-    		tableAccount.forEach(account -> System.out.println(account.toString()));
+    		/*JsonTable<Payment> table = new JsonTable<>(Payment.class, "/Java/Jmart/lib/randomPayment.json");
+    		ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
+    		paymentPool.start();
+    		table.forEach(payment -> paymentPool.add(payment));
+    		while (paymentPool.size() != 0);
+    		paymentPool.exit();
+    		while (paymentPool.isAlive());
+    		System.out.println("Thread exited successfully");
+    		
+    		Gson gson = new Gson();
+    		table.forEach(payment -> {
+    			String history = gson.toJson(payment.history);
+    			System.out.println(history);
+    		});*/
+    		
     	}
     	catch (Throwable t)
     	{
     		t.printStackTrace();
     	}
+    	
+    }
+    
+    public static boolean paymentTimekeeper (Payment payment) {
+    	/*
+    	Date currentDate = new Date();
+    	int lastRecord = payment.history.size() - 1;
+    	long elapsedTime = currentDate.getTime() - payment.history.get(lastRecord).date.getTime();
+    	
+    	if (payment.history.get(lastRecord).status == Invoice.Status.WAITING_CONFIRMATION 
+    			&& elapsedTime > WAITING_CONF_LIMIT_MS) {
+    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
+    	}
+    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_PROGRESS 
+    			&& elapsedTime > ON_PROGRESS_LIMIT_MS) {
+    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
+    	}
+    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_DELIVERY 
+    			&& elapsedTime > ON_DELIVERY_LIMIT_MS) {
+    		payment.history.add(new Payment.Record(Invoice.Status.DELIVERED, "Terkirim"));
+    	}
+    	if (payment.history.get(lastRecord).status == Invoice.Status.DELIVERED 
+    			&& elapsedTime > DELIVERED_LIMIT_MS) {
+    		payment.history.add(new Payment.Record(Invoice.Status.FINISHED, "Selesai"));
+    	}
+    	*/
+    	return false;
+	
     }
 
 }
