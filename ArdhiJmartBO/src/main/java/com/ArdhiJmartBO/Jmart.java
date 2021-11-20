@@ -1,5 +1,6 @@
 package com.ArdhiJmartBO;
 
+import com.ArdhiJmartBO.dbjson.JsonDBEngine;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.BufferedReader;
@@ -117,32 +118,9 @@ public class Jmart
 	
     public static void main(String[] args)
     {
-		SpringApplication.run(Jmart.class, args);
-    	try
-    	{	
-    		/*
-    		JsonTable<Payment> table = new JsonTable<>(Payment.class, "/Java/Jmart/lib/randomPayment.json");
-    		ObjectPoolThread<Payment> paymentPool = new ObjectPoolThread<Payment>("Thread-PP", Jmart::paymentTimekeeper);
-    		paymentPool.start();
-    		table.forEach(payment -> paymentPool.add(payment));
-    		while (paymentPool.size() != 0);
-    		paymentPool.exit();
-    		while (paymentPool.isAlive());
-    		System.out.println("Thread exited successfully");
-    		
-    		Gson gson = new Gson();
-    		table.forEach(payment -> {
-    			String history = gson.toJson(payment.history);
-    			System.out.println(history);
-    		});
-    		*/
-    		
-    	}
-    	catch (Throwable t)
-    	{
-    		t.printStackTrace();
-    	}
-    	
+		JsonDBEngine.Run(Jmart.class);
+		SpringApplication.run(Jmart.class,args);
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
     }
     
     public static boolean paymentTimekeeper (Payment payment) {

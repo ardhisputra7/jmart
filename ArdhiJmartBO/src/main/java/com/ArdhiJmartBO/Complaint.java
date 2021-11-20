@@ -1,8 +1,10 @@
 package com.ArdhiJmartBO;
+import com.ArdhiJmartBO.dbjson.Serializable;
+
 import java.util.Date;
 import java.text.*;
 
-public class Complaint extends Serializable 
+public class Complaint extends Serializable
 {
     public String desc;
     public Date date;

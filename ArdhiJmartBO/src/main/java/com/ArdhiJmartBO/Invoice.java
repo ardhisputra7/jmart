@@ -1,7 +1,9 @@
 package com.ArdhiJmartBO;
+import com.ArdhiJmartBO.dbjson.Serializable;
+
 import java.util.Date;
 
-public abstract class Invoice extends Serializable 
+public abstract class Invoice extends Serializable
 {
     public final Date date;
     public int buyerId;
