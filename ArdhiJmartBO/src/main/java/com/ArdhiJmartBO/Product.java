@@ -1,8 +1,7 @@
 package com.ArdhiJmartBO;
+import com.ArdhiJmartBO.dbjson.Serializable;
 
-
-public class Product 
-{
+public class Product extends Serializable {
     // instance variables - replace the example below with your own
     public int accountId;
     public ProductCategory category;

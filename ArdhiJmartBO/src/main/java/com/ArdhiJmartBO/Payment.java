@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Payment extends Invoice
 {
-	ArrayList<Record> history;
+	public ArrayList<Record> history;
     public int productCount;
     public Shipment shipment;
     

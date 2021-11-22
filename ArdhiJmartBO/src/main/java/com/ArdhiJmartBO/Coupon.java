@@ -1,8 +1,9 @@
 package com.ArdhiJmartBO;
 
 
-public class Coupon
-{
+import com.ArdhiJmartBO.dbjson.Serializable;
+
+public class Coupon extends Serializable {
     // instance variables - replace the example below with your own
     public final String name;
     public final int code;
@@ -27,7 +28,6 @@ public class Coupon
 
     public boolean isUsed()
     {
-        // put your code here
         return used;
     }
     
