@@ -1,13 +1,14 @@
 package com.ArdhiJmartBO.controller;
-import com.ArdhiJmartBO.Account;
-import com.ArdhiJmartBO.Invoice;
-import com.ArdhiJmartBO.ObjectPoolThread;
+import com.ArdhiJmartBO.*;
 import com.ArdhiJmartBO.Payment;
 import com.ArdhiJmartBO.dbjson.JsonAutowired;
 import com.ArdhiJmartBO.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+
+import static com.ArdhiJmartBO.controller.AccountController.accountTable;
+import static com.ArdhiJmartBO.controller.ProductController.productTable;
 
 @RestController
 @RequestMapping("/payment")
@@ -24,17 +25,62 @@ public class PaymentController implements BasicGetController<Payment>
 
     @PostMapping("/{id}/accept")
     boolean accept (@PathVariable int id) {
-        return true;
+        Predicate<Payment> findPayment = paymentFound -> paymentFound.id == id;
+        Algorithm.find(paymentTable, findPayment);
+        Payment payment = Algorithm.find(paymentTable, findPayment);
+
+        if (Algorithm.exists(paymentTable, findPayment) &&
+                payment.history.get(payment.history.size()-1).status == Invoice.Status.WAITING_CONFIRMATION){
+            payment.history.add(new Payment.Record(Invoice.Status.ON_PROGRESS, "Pesanan diproses."));
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @PostMapping("/{id}/cancel")
     boolean cancel (@PathVariable int id) {
-        return false;
+        Predicate<Payment> findPayment = paymentFound -> paymentFound.id == id;
+        Algorithm.find(paymentTable, findPayment);
+        Payment payment = Algorithm.find(paymentTable, findPayment);
+
+        if (Algorithm.exists(paymentTable, findPayment) &&
+                payment.history.get(payment.history.size()-1).status == Invoice.Status.WAITING_CONFIRMATION){
+            payment.history.add(new Payment.Record(Invoice.Status.CANCELLED, "Pesanan dibatalkan."));
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @PostMapping("/create")
-    Payment create (int buyerId, int productId, String shipmentAddress, byte shipmentPlan){
-        return null;
+    Payment create (@RequestParam int buyerId, @RequestParam int productId,
+                    @RequestParam int productCount, @RequestParam String shipmentAddress,
+                    @RequestParam byte shipmentPlan){
+        Predicate<Account> findAccount = accFind -> accFind.id == buyerId;
+        Predicate<Product> findProduct = prodFind -> prodFind.id == productId;
+
+        Product product = Algorithm.find(productTable, findProduct);
+        Account account = Algorithm.find(accountTable, findAccount);
+
+        Payment payment = Algorithm.<Payment>find(paymentTable, pred -> product.id == productId && account.id == buyerId);
+        Shipment shipment = new Shipment(shipmentAddress, 0, shipmentPlan, null);
+
+        payment.shipment = shipment;
+
+        if(Algorithm.exists(accountTable, findAccount) && Algorithm.exists(productTable, findProduct)
+           && account.balance >= product.price * productCount) {
+            account.balance -= payment.getTotalPay(product)* productCount;
+            payment.history.add(new Payment.Record(Invoice.Status.WAITING_CONFIRMATION, "Menunggu konfirmasi."));
+            paymentTable.add(payment);
+            poolThread.add(payment);
+       }
+        else{
+            return null;
+        }
+        return payment;
     }
 
     @Override
@@ -44,7 +90,20 @@ public class PaymentController implements BasicGetController<Payment>
 
     @PostMapping("/{id}/submit")
     boolean submit ( @PathVariable int id, String receipt){
-        return true;
+        Predicate<Payment> findPayment = paymentFound -> paymentFound.id == id;
+        Algorithm.find(paymentTable, findPayment);
+        Payment payment = Algorithm.find(paymentTable, findPayment);
+
+        if (Algorithm.exists(paymentTable, findPayment)
+                && payment.history.get(payment.history.size()-1).status == Invoice.Status.ON_PROGRESS
+                && !payment.shipment.receipt.isBlank()){
+            payment.shipment.receipt = receipt;
+            payment.history.add(new Payment.Record(Invoice.Status.ON_DELIVERY, "Pesanan sedang dikirim."));
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public static boolean timekeeper (Payment payment) {
@@ -75,10 +134,7 @@ public class PaymentController implements BasicGetController<Payment>
                 payment.history.remove(element);
         }
 
-        if(payment.history.isEmpty()) {
-            return true;
-        }
-        else return false;
+        return payment.history.isEmpty();
 
     }
 }

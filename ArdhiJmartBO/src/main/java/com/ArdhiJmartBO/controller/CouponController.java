@@ -26,7 +26,8 @@ public class CouponController implements BasicGetController<Coupon> {
 
     @GetMapping("/getAvailable")
     List<Coupon> getAvailable (@RequestParam int page,@RequestParam int pageSize){
-        return null;
+        Predicate<Coupon> couponPredicate = available -> available.isUsed();
+        return Algorithm.paginate(getJsonTable(), page, pageSize, couponPredicate);
     }
 
     @Override

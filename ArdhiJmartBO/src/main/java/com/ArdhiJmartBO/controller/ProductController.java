@@ -7,6 +7,7 @@ import com.ArdhiJmartBO.dbjson.Serializable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
 @RequestMapping("/product")
@@ -52,8 +53,22 @@ public class ProductController implements BasicGetController<Product>
     }
 
     @GetMapping("/getFiltered")
-    List<Product> getProductFiltered (int page, int pageSize, int accountId, String search
-                        ,int minPrice, int maxPrice, ProductCategory category){
-    return null;
+    List<Product> getProductFiltered (
+            @RequestParam int page, @RequestParam int pageSize,
+            @RequestParam int accountId, @RequestParam String search,
+            @RequestParam int minPrice, @RequestParam int maxPrice,
+            @RequestParam ProductCategory category ){
+        Predicate<Product> accountIdFilter = accFilter -> accFilter.accountId == accountId;
+        Predicate<Product> searchContain = contained -> contained.name.toLowerCase().contains(search.toLowerCase());
+        Predicate<Product> minPriceFilter = minFiltered -> minFiltered.price >= minPrice;
+        Predicate<Product> maxPriceFilter = maxFiltered -> maxFiltered.price <= maxPrice;
+        Predicate<Product> categoryFilter = categoryFiltered -> categoryFiltered.category == category;
+        Predicate<Product> filter = filtered -> Algorithm.exists(getJsonTable(), accountIdFilter)
+                                                && Algorithm.exists(getJsonTable(), searchContain)
+                                                && Algorithm.exists(getJsonTable(), minPriceFilter)
+                                                && Algorithm.exists(getJsonTable(), maxPriceFilter)
+                                                && Algorithm.exists(getJsonTable(), categoryFilter);
+
+        return Algorithm.paginate(getJsonTable(), page, pageSize, filter);
     }
 }
