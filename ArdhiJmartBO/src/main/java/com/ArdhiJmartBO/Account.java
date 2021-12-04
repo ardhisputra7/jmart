@@ -21,7 +21,8 @@ public class Account extends Serializable
         this.name = name;
         this.email = email;
         this.password = password;
-        this.balance= balance;
+        this.balance = balance;
+		this.store = null;
     }
     
     public boolean validate()
@@ -47,7 +48,9 @@ public class Account extends Serializable
     	return "nama:" + name + 
     		   "\nemail: "+ email + 
     		   "\npassword: " + password + 
-    		   "\nbalance: "+ balance + "\n";
+    		   "\nbalance: "+ balance +
+                "\nstore: "+ store +
+                "\n";
     }
     
 }

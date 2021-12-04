@@ -19,7 +19,7 @@ public class PaymentController implements BasicGetController<Payment>
     public static final long ON_PROGRESS_LIMIT_MS = 150;
     public static final long WAITING_CONF_LIMIT_MS = 150;
 
-    @JsonAutowired(filepath = "C:/Java/Jmart/resource", value = Payment.class)
+    @JsonAutowired(filepath = "C:/Java/Jmart/resource/payment.json", value = Payment.class)
     public static JsonTable<Payment> paymentTable;
     public static ObjectPoolThread<Payment> poolThread;
 

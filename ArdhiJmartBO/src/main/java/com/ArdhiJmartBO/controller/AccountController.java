@@ -2,6 +2,7 @@ package com.ArdhiJmartBO.controller;
 
 import com.ArdhiJmartBO.Account;
 import com.ArdhiJmartBO.Algorithm;
+import com.ArdhiJmartBO.Predicate;
 import com.ArdhiJmartBO.Store;
 import com.ArdhiJmartBO.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class AccountController implements BasicGetController<Account>
     public static final Pattern REGEX_PATTERN_EMAIL = Pattern.compile(REGEX_EMAIL);
     public static final Pattern REGEX_PATTERN_PASSWORD = Pattern.compile(REGEX_PASSWORD);
 
-    @JsonAutowired(filepath = "C:/Java/Jmart/resource", value = Account.class)
+    @JsonAutowired(filepath = "C:/Java/Jmart/resource/account.json", value = Account.class)
     public static JsonTable<Account> accountTable;
 
     @Override
@@ -50,7 +51,7 @@ public class AccountController implements BasicGetController<Account>
         }
 
         for (Account account : accountTable){
-            if(account.email.equals(email) && account.password.equals(password)) {
+            if(account.email.toLowerCase().equals(email) && account.password.equals(password)) {
                 return account;
             }
         }
@@ -81,6 +82,7 @@ public class AccountController implements BasicGetController<Account>
             catch (NoSuchAlgorithmException e) {
                 throw new RuntimeException(e);
             }
+            getJsonTable().add(new Account(name, email.toLowerCase(), password, 0));
             return new Account(name, email, password, 0);
         }
         else return null;
@@ -92,31 +94,28 @@ public class AccountController implements BasicGetController<Account>
                     @PathVariable int id,
                     @RequestParam String name,
                     @RequestParam String address,
-                    @RequestParam String phoneNumber,
-                    @RequestParam double balance
+                    @RequestParam String phoneNumber
             )
     {
         if(Algorithm.exists(getJsonTable().toArray(), id) || !Algorithm.exists(getJsonTable().toArray(), name)) {
-            return new Store(name, address, phoneNumber, balance);
+			Account acc = Algorithm.<Account>find(getJsonTable(), (account -> account.id == id && account.store == null));
+			acc.store = new Store(name, address, phoneNumber, 0);
+			return acc.store;
         }
 
         return null;
     }
 
     @PostMapping("/{id}/topUp")
-    boolean topUp
-            (
-                    @PathVariable int id,
-                    @RequestParam double balance
-            )
-    {
-        for(Account account : accountTable) {
-            if(account.id == id) {
-                account.balance += balance;
-                return true;
-            }
+    boolean topUp(@PathVariable int id, @RequestParam double balance) {
+        Predicate<Account> findAccount = matchAccount -> matchAccount.id == id;
+        Account account = Algorithm.find(getJsonTable(), findAccount);
+        if(account != null) {
+            account.balance += balance;
+            return true;
         }
         return false;
     }
+
 
 }

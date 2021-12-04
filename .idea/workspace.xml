@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2d3e04fa-6fbd-47c1-be9e-10fe15c97a93" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/ArdhiJmartBoApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/BasicGetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/BasicGetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/CouponController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/CouponController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/PaymentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/PaymentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ArdhiJmartBO/src/main/java/com/ArdhiJmartBO/controller/ProductController.java" afterDir="false" />
@@ -66,7 +73,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -107,6 +114,24 @@
       <workItem from="1637579686666" duration="8433000" />
       <workItem from="1637839229874" duration="409000" />
       <workItem from="1637841353810" duration="7172000" />
+      <workItem from="1637848682891" duration="152000" />
+      <workItem from="1637859990288" duration="297000" />
+      <workItem from="1637860317589" duration="277000" />
+      <workItem from="1637860996645" duration="584000" />
+      <workItem from="1637861646776" duration="538000" />
+      <workItem from="1637862221696" duration="138000" />
+      <workItem from="1637862646936" duration="1296000" />
+      <workItem from="1637864637746" duration="244000" />
+      <workItem from="1637865095537" duration="102000" />
+      <workItem from="1638091929298" duration="124000" />
+      <workItem from="1638182717099" duration="734000" />
+      <workItem from="1638185933606" duration="6000" />
+      <workItem from="1638250488944" duration="1407000" />
+      <workItem from="1638455988309" duration="690000" />
+      <workItem from="1638460400094" duration="782000" />
+      <workItem from="1638463984111" duration="414000" />
+      <workItem from="1638547305888" duration="710000" />
+      <workItem from="1638550109112" duration="259000" />
     </task>
     <servers />
   </component>

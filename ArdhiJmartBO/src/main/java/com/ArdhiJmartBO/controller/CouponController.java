@@ -15,7 +15,7 @@ import java.util.Objects;
 @RequestMapping("/coupon")
 public class CouponController implements BasicGetController<Coupon> {
 
-    @JsonAutowired(filepath = "C:/Java/Jmart/resource", value = Coupon.class)
+    @JsonAutowired(filepath = "C:/Java/Jmart/resource/coupon.json", value = Coupon.class)
     public static JsonTable<Coupon> couponTable;
 
     @GetMapping("/{id}/canApply")
