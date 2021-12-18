@@ -2,6 +2,10 @@ package com.ArdhiJmartBO;
 import java.util.*;
 import java.lang.Iterable;
 
+/**
+ * class untuk berisi algoritma yang bisa digunakan
+ * @author Ardhi Putra
+ */
 public class Algorithm {
 
     private Algorithm() {

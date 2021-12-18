@@ -12,6 +12,13 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Controller class untuk account
+ * Menggunakan Spring framework
+ * Mengimplementasikan BasicGetController
+ * @author Ardhi Putra
+ *
+ */
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -24,11 +31,21 @@ public class AccountController implements BasicGetController<Account>
     @JsonAutowired(filepath = "C:/Java/Jmart/resource/account.json", value = Account.class)
     public static JsonTable<Account> accountTable;
 
+    /**
+     * method untuk mengembalikan jsonTable dari account
+     * @return accountTable
+     */
     @Override
     public JsonTable<Account> getJsonTable() {
         return accountTable;
     }
 
+    /**
+     * Method untuk memproses login
+     * @param email email yang ingin di cek
+     * @param password password yang ingin di cek
+     * @return mereturn account bila berhasil dan null bila gagal
+     */
     @PostMapping("/login")
     Account login
             (
@@ -58,6 +75,13 @@ public class AccountController implements BasicGetController<Account>
         return null;
     }
 
+    /**
+     * Method untuk melakukan register account baru
+     * @param name nama dari account baru
+     * @param email email dari account baru
+     * @param password password dari account baru
+     * @return Account baru yang perlu di buat dan null bila gagal
+     */
     @PostMapping("/register")
     Account register
             (
@@ -88,6 +112,14 @@ public class AccountController implements BasicGetController<Account>
         else return null;
     }
 
+    /**
+     * Method untuk melakukan register store pada account
+     * @param id id dari store yang dibuat
+     * @param name nama dari store yang dibuat
+     * @param address address dari store yang dibuat
+     * @param phoneNumber nomor telpon dari store yang dibuat
+     * @return mengembalikan store baru bila berhasil dan null ketika gagal
+     */
     @PostMapping("/{id}/registerStore")
     Store registerStore
             (
@@ -106,6 +138,12 @@ public class AccountController implements BasicGetController<Account>
         return null;
     }
 
+    /**
+     * Method untuk melakukan top up pada account
+     * @param id id dari account
+     * @param balance balance yang ditambahkan dari account
+     * @return mengembalikan true bila berhasil dan false ketika gagal
+     */
     @PostMapping("/{id}/topUp")
     boolean topUp(@PathVariable int id, @RequestParam double balance) {
         Predicate<Account> findAccount = matchAccount -> matchAccount.id == id;

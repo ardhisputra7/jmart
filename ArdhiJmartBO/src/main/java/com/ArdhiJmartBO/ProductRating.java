@@ -1,17 +1,26 @@
 package com.ArdhiJmartBO;
 
+/**
+ * Class untuk mendefinisikan Product Rating
+ */
 public class ProductRating
 {
-    // instance variables - replace the example below with your own
     private long total;
     private long count;
 
+    /**
+     * Constuctor untuk Product Rating
+     */
     public ProductRating()
     {
         this.total = 0;
         this.count = 0;
     }
-    
+
+    /**
+     * Method untuk memasukkan
+     * @param rating
+     */
     public void insert(int rating)
     {
         this.total = total + rating;

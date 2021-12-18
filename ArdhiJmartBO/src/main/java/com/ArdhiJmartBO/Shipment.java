@@ -3,6 +3,9 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+/**
+ * class untuk mendefinisikan shipment
+ */
 public class Shipment 
 {
 	public static final SimpleDateFormat ESTIMATION_FORMAT = new SimpleDateFormat("EEE MMMM dd yyyy");
@@ -15,7 +18,14 @@ public class Shipment
     public int cost;
     public byte plan;
     public String receipt;
-    
+
+    /**
+     * Constructor untuk shipment
+     * @param address
+     * @param cost
+     * @param plan
+     * @param receipt
+     */
     public Shipment(String address, int cost, byte plan, String receipt)
     {
         this.address = address;
@@ -24,6 +34,11 @@ public class Shipment
         this.receipt = receipt;
     }
 
+    /**
+     * Method untuk mendapat perkiraan waktu datang
+     * @param reference tanggal dalam bentuk object
+     * @return mengembalikan waktu
+     */
     public String getEstimatedArrival(Date reference)
     {
         Calendar cal = Calendar.getInstance();
@@ -48,7 +63,8 @@ public class Shipment
             return ESTIMATION_FORMAT.format(cal.getTime());
         }
     }
-    
+
+
     public boolean isDuration(Plan reference) {
         if((this.plan & reference.bit) != 0)
             return true;
@@ -62,7 +78,10 @@ public class Shipment
         else
             return false;
     }
-    
+
+    /**
+     * Inner class untuk byte pada plan
+     */
     static class Plan {
     	
     	public final byte bit;

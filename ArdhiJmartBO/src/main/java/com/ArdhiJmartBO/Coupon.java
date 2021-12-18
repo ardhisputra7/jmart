@@ -3,8 +3,14 @@ package com.ArdhiJmartBO;
 
 import com.ArdhiJmartBO.dbjson.Serializable;
 
+/**
+ * Class untuk mendefinisikan Coupon
+ * extends Seriazable
+ * @author Ardhi Putra
+ *
+ */
 public class Coupon extends Serializable {
-    // instance variables - replace the example below with your own
+
     public final String name;
     public final int code;
     public final double cut;
@@ -13,11 +19,10 @@ public class Coupon extends Serializable {
     private boolean used;
     
     /**
-     * Constructor for objects of class Coupon
+     * Constructor untuk coupon
      */
     public Coupon(String name, int code, Type type, double cut, double minimum)
     {
-        // initialise instance variables
         this.name = name;
         this.code = code;
         this.cut = cut;
@@ -26,11 +31,21 @@ public class Coupon extends Serializable {
         this.used = false;
     }
 
+    /**
+     * Method untuk menentukan apakah coupon sudah digunakan atau belum
+     * @return mengembalikan true bila sudah dan false ketika belum
+     */
     public boolean isUsed()
     {
         return used;
     }
-    
+
+    /**
+     * Method untuk menentukan apakah coupon bisa digunakan atau tidak
+     * @param price harga barang yang ingin di pasang coupon
+     * @param discount besar diskon dari coupon
+     * @return mengembalikan true bila bisa digunakand dan false ketika tidak
+     */
     public boolean canApply(double price, double discount)
     {
         if  (Treasury.getAdjustedPrice(price, discount)>= minimum && used == false )
@@ -42,7 +57,13 @@ public class Coupon extends Serializable {
             return false;
         }
     }
-    
+
+    /**
+     * Method untuk memasang coupon
+     * @param price harga barang yang ingin di pasang coupon
+     * @param discount besar diskon dari coupon
+     * @return mengembalikan harga yang didiskon bila bisa dipasang
+     */
     public double apply(double price, double discount)
     {
         used = true;
@@ -59,7 +80,10 @@ public class Coupon extends Serializable {
             return 0;
         }
     }
-    
+
+    /**
+     * Enum untuk type dari coupon
+     */
     public static enum Type
     {
         DISCOUNT, REBATE

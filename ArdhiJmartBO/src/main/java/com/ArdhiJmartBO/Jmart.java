@@ -12,6 +12,10 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 
+/**
+ * Driver atau Main class
+ *  @author Ardhi Putra
+ */
 @SpringBootApplication
 public class Jmart
 {   
@@ -111,10 +115,10 @@ public class Jmart
         return list;
     }
 	*/
-	public static long DELIVERED_LIMIT_MS = 100;
-	public static long ON_DELIVERY_LIMIT_MS = 100;
-	public static long ON_PROGRESS_LIMIT_MS = 150;
-	public static long WAITING_CONF_LIMIT_MS = 150;
+//	public static long DELIVERED_LIMIT_MS = 100;
+//	public static long ON_DELIVERY_LIMIT_MS = 100;
+//	public static long ON_PROGRESS_LIMIT_MS = 150;
+//	public static long WAITING_CONF_LIMIT_MS = 150;
 	
     public static void main(String[] args)
     {
@@ -123,38 +127,38 @@ public class Jmart
 		Runtime.getRuntime().addShutdownHook(new Thread(() -> JsonDBEngine.join()));
     }
     
-    public static boolean paymentTimekeeper (Payment payment) {
-    	
-    	Date currentDate = new Date();
-    	int lastRecord = payment.history.size() - 1;
-    	long elapsedTime = currentDate.getTime() - payment.history.get(lastRecord).date.getTime();
-    	
-    	if (payment.history.get(lastRecord).status == Invoice.Status.WAITING_CONFIRMATION 
-    			&& elapsedTime > WAITING_CONF_LIMIT_MS) {
-    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
-    	}
-    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_PROGRESS 
-    			&& elapsedTime > ON_PROGRESS_LIMIT_MS) {
-    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
-    	}
-    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_DELIVERY 
-    			&& elapsedTime > ON_DELIVERY_LIMIT_MS) {
-    		payment.history.add(new Payment.Record(Invoice.Status.DELIVERED, "Terkirim"));
-    	}
-    	if (payment.history.get(lastRecord).status == Invoice.Status.DELIVERED 
-    			&& elapsedTime > DELIVERED_LIMIT_MS) {
-    		payment.history.add(new Payment.Record(Invoice.Status.FINISHED, "Selesai"));
-    	}
-    	
-    	for(Payment.Record element: payment.history) {
-            if(element.status == Invoice.Status.FINISHED || element.status == Invoice.Status.FAILED)
-                payment.history.remove(element);
-        }
-        
-        if(payment.history.isEmpty())
-            return true;
-        else return false;
-	
-    }
+//    public static boolean paymentTimekeeper (Payment payment) {
+//
+//    	Date currentDate = new Date();
+//    	int lastRecord = payment.history.size() - 1;
+//    	long elapsedTime = currentDate.getTime() - payment.history.get(lastRecord).date.getTime();
+//
+//    	if (payment.history.get(lastRecord).status == Invoice.Status.WAITING_CONFIRMATION
+//    			&& elapsedTime > WAITING_CONF_LIMIT_MS) {
+//    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
+//    	}
+//    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_PROGRESS
+//    			&& elapsedTime > ON_PROGRESS_LIMIT_MS) {
+//    		payment.history.add(new Payment.Record(Invoice.Status.FAILED, "Gagal"));
+//    	}
+//    	if (payment.history.get(lastRecord).status == Invoice.Status.ON_DELIVERY
+//    			&& elapsedTime > ON_DELIVERY_LIMIT_MS) {
+//    		payment.history.add(new Payment.Record(Invoice.Status.DELIVERED, "Terkirim"));
+//    	}
+//    	if (payment.history.get(lastRecord).status == Invoice.Status.DELIVERED
+//    			&& elapsedTime > DELIVERED_LIMIT_MS) {
+//    		payment.history.add(new Payment.Record(Invoice.Status.FINISHED, "Selesai"));
+//    	}
+//
+//    	for(Payment.Record element: payment.history) {
+//            if(element.status == Invoice.Status.FINISHED || element.status == Invoice.Status.FAILED)
+//                payment.history.remove(element);
+//        }
+//
+//        if(payment.history.isEmpty())
+//            return true;
+//        else return false;
+//
+//    }
 
 }

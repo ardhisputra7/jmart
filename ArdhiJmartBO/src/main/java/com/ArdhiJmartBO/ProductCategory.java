@@ -1,6 +1,9 @@
 package com.ArdhiJmartBO;
 
 
+/**
+ * enum untuk mendefinisikan Product Category
+ */
 public enum ProductCategory
 {
     BOOK,
